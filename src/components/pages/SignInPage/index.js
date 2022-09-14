@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputComponent from '../../InputComponent';
+import ButtonComponent from '../../ButtonComponent';
 import {
   Container,
   TitleArea,
-  InputArea,
-  Input,
-  Button
+  InputArea
 } from './style'
 
 const SignUpPage = () => {
@@ -32,23 +32,23 @@ const SignUpPage = () => {
       </TitleArea>
       <InputArea>
         <form onSubmit={handleSubmit}>
-          <Input 
+          <InputComponent 
             placeholder='E-mail' 
             required
             type='email'
             value={email}
             onChange={(e)=>setEmail(e.target.value)}
           />
-          <Input 
+          <InputComponent 
             placeholder='Senha' 
             required
             type='password'
             value={password}
             onChange={(e)=>setPassword(e.target.value)}
           />
-          <Button>Entrar</Button>
+          <ButtonComponent>Entrar</ButtonComponent>
         </form>
-        <Button type='link' onClick={() => navigate('/sign-up')}>Não tem uma conta? Cadastre-se</Button>
+        <ButtonComponent type='link' onClick={() => navigate('/sign-up')}>Não tem uma conta? Cadastre-se</ButtonComponent>
       </InputArea>
     </Container>
   )
