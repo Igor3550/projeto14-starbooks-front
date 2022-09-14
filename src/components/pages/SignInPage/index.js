@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signIn } from '../../../services/starbooks';
 import InputComponent from '../../InputComponent';
 import ButtonComponent from '../../ButtonComponent';
+import UserContext from '../../../contexts/UserContext'
 import {
   Container,
   TitleArea,
@@ -10,6 +12,8 @@ import {
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+
+  const { setUser } = useContext(UserContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,9 +24,24 @@ const SignUpPage = () => {
       email,
       password
     }
-    console.log(body)
-    setEmail('');
-    setPassword('')
+
+    const promise = signIn(body);
+    promise.catch((error) => {
+      console.log(error);
+      if(error.response.status === 422){
+        alert("Usuário e/ou senha incorreto(s)!");
+      }else{
+        alert(`Ocorreu um erro inesperado: ${error.message}`)
+      }
+    })
+    promise.then((res) => {
+      console.log(res.data);
+      setUser({
+        token:res.data
+      })
+      setEmail('');
+      setPassword('')
+    })
   }
 
   return (
