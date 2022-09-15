@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../../services/starbooks';
 import InputComponent from '../../InputComponent';
 import ButtonComponent from '../../ButtonComponent';
-import UserContext from '../../../contexts/UserContext'
+import UserContext from '../../../contexts/UserContext';
+import { IconContext } from 'react-icons';
+import { GiSpellBook } from 'react-icons/gi'
 import {
   Container,
   TitleArea,
@@ -47,6 +49,9 @@ const SignUpPage = () => {
   return (
     <Container>
       <TitleArea>
+        <IconContext.Provider value={{ className: "icons" }}>
+          <GiSpellBook className='icon' />
+        </IconContext.Provider>
         <h1>StarBooks</h1>
       </TitleArea>
       <InputArea>

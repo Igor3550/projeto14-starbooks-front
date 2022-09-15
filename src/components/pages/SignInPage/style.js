@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../../../styles/colors";
+import colors from "../../Assets/styles/colors";
 
 export const Container = styled.div`
   background-color: ${colors.darkBlue};
@@ -7,13 +7,15 @@ export const Container = styled.div`
   height: 50vh;
   max-width: 1000px;
   margin: auto;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 10px;
 `;
 
 export const TitleArea = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin: 20px 0;
@@ -24,6 +26,11 @@ export const TitleArea = styled.div`
     font-weight: 400;
     color: #fff;
   }
+  .icons {
+		color: #ffffff;
+		font-size: 45px;
+		margin-right: 10px;
+	}
 `;
 export const InputArea = styled.div`
   width: 100%;
