@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GlobalStyle from "./components/Assets/GlobalStyle";
+import Homepage from "./components/Homepage/Homepage";
+import UserContext from "./context/UserContext";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<UserContext.Provider value={{}}>
+				<Header />
+				<BrowserRouter>
+					<GlobalStyle />
+					<Routes>
+						<Route path="/" element={<Homepage />} />
+					</Routes>
+				</BrowserRouter>
+				<Footer />
+			</UserContext.Provider>
+		</>
+	);
 }
 
 export default App;
