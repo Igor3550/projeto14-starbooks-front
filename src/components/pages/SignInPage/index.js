@@ -42,7 +42,8 @@ const SignUpPage = () => {
         token:res.data
       })
       setEmail('');
-      setPassword('')
+      setPassword('');
+      navigate('/');
     })
   }
 

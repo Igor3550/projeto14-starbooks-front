@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import colors from "../../Assets/styles/colors";
 
 export const Container = styled.div`
@@ -32,6 +33,7 @@ export const TitleArea = styled.div`
 		margin-right: 10px;
 	}
 `;
+
 export const InputArea = styled.div`
   width: 100%;
   height: 80%;
