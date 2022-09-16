@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBooks } from "../../../services/starbooks";
 import { Shelf, Product } from "./Homepage-style";
-import booksteste from "./products-teste";
 
 import { useNavigate } from "react-router-dom";
 
@@ -10,14 +9,17 @@ export default function SelfTemplate({ genre }) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		getBooks()
-			.then((resp) => setBooks(resp.data))
+			.then((resp) => {
+				const booksData = resp.data;
+				setBooks(booksData);
+			})
 			.catch((err) => console.error(err));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<>
-			<p>{genre}</p>
+			<h3>{genre}:</h3>
 			<Shelf>
 				{books
 					.filter((el) => el.genre === genre.toLowerCase())

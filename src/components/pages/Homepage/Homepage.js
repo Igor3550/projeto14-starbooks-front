@@ -1,14 +1,14 @@
-import { PageStyle, Product, Shelf } from "./Homepage-style";
+import { PageStyle } from "./Homepage-style";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import ShelfTemplate from "./Shelf-template";
 
 export default function Homepage() {
 	const genres = [
+		"Programação",
+		"Horror",
 		"Romance",
 		"Fantasia",
-		"Terror",
-		"Programação",
 		"Comic",
 		"Manga",
 	];
@@ -18,7 +18,7 @@ export default function Homepage() {
 			<Header />
 			<PageStyle>
 				{genres.map((el, i) => (
-					<ShelfTemplate genre={el.toLowerCase()} key={`shelf key ${i}`} />
+					<ShelfTemplate genre={el} key={`shelf key ${i}`} />
 				))}
 			</PageStyle>
 			<Footer />
