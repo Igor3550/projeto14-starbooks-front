@@ -1,22 +1,27 @@
-import { PageStyle, Product } from "./Homepage-style";
-import Footer from '../../Footer/Footer'
-import Header from '../../Header/Header'
-import books from "./products-teste";
+import { PageStyle, Product, Shelf } from "./Homepage-style";
+import Footer from "../../Footer/Footer";
+import Header from "../../Header/Header";
+import ShelfTemplate from "./Shelf-template";
 
 export default function Homepage() {
+	const genres = [
+		"Romance",
+		"Fantasia",
+		"Terror",
+		"Programação",
+		"Comic",
+		"Manga",
+	];
+
 	return (
 		<>
 			<Header />
 			<PageStyle>
-				{books.map((el) => (
-					<Product>
-						<img src={el.image} alt="book" />
-						<h2>{el.title}</h2>
-						<p>R${el.price.toFixed(2).toString().replace(/\./, ",")}</p>
-					</Product>
+				{genres.map((el, i) => (
+					<ShelfTemplate genre={el.toLowerCase()} key={`shelf key ${i}`} />
 				))}
 			</PageStyle>
-			<Footer/>
+			<Footer />
 		</>
 	);
 }

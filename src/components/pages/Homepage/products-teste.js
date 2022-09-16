@@ -2,7 +2,7 @@ const books = [
 	{
 		title: "O guia definitivo do mochileiro das galáxias",
 		autor: "Douglas Adams",
-		genre: "fantasy",
+		genre: "fantasia",
 		publisher: "Arqueiro",
 		language: "Português",
 		pages: "784",
@@ -20,7 +20,7 @@ const books = [
 	{
 		title: "O Hobbit",
 		autor: "J.R.R. Tolkien",
-		genre: "fantasy",
+		genre: "fantasia",
 		publisher: "HarperCollins Brasil",
 		language: "Português",
 		pages: "336",
@@ -36,7 +36,7 @@ const books = [
 	{
 		title: "Fogo & Sangue - Volume 1",
 		autor: "George R. R. Martin",
-		genre: "fantasy",
+		genre: "fantasia",
 		publisher: "Suma",
 		language: "Português",
 		pages: "664",
