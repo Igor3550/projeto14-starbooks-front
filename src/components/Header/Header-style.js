@@ -14,6 +14,7 @@ export const HeaderStyle = styled.div`
 
 	h1 {
 		font-size: 35px;
+		font-family: 'Saira Stencil One', cursive;
 	}
 
 	.icons {

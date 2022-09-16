@@ -1,25 +1,29 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GlobalStyle from "./components/Assets/GlobalStyle";
-import Homepage from "./components/Homepage/Homepage";
-import UserContext from "./context/UserContext";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import UserContext from './contexts/UserContext'
+import { Container } from "./components/Assets/styles/appStyle";
+import GlobalStyle from "./components/Assets/styles/GlobalStyle";
+import SignUpPage from "./components/pages/SignUpPage";
+import SignInPage from "./components/pages/SignInPage";
+import Homepage from "./components/pages/Homepage/Homepage";
 
 function App() {
-	return (
-		<>
-			<UserContext.Provider value={{}}>
-				<Header />
-				<BrowserRouter>
-					<GlobalStyle />
-					<Routes>
+  const [user, setUser] = useState({})
+
+  return (
+    <Container>
+      <GlobalStyle />
+      <UserContext.Provider value={{ user, setUser }}>
+        <BrowserRouter>
+          <Routes>
 						<Route path="/" element={<Homepage />} />
-					</Routes>
-				</BrowserRouter>
-				<Footer />
-			</UserContext.Provider>
-		</>
-	);
+            <Route path='/sign-in' element={<SignInPage />} /> 
+            <Route path='/sign-up' element={<SignUpPage />} />
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
+    </Container>
+  );
 }
 
 export default App;
