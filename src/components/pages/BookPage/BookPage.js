@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBook } from "../../../services/starbooks";
+import { getBook, addItemToCart } from "../../../services/starbooks";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import { BookStyle, Button } from "./Bookpage-style";
