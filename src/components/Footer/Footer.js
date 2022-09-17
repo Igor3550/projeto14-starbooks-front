@@ -16,7 +16,7 @@ export default function Footer() {
 			<IconContext.Provider value={{ className: "icons" }}>
 				<AiFillHome onClick={() => navigate("/")} />
 				<AiFillHeart />
-				<AiOutlineShoppingCart />
+				<AiOutlineShoppingCart onClick={() => navigate('/cart') }/>
 				<AiOutlineMenu />
 			</IconContext.Provider>
 		</FootStyle>

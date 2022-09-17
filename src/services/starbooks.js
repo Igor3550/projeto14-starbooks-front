@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
-//const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
+//const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
 
 function createHeaders(token) {
 	const config = {

@@ -22,6 +22,7 @@ function App() {
 						<Route path="/sign-in" element={<SignInPage />} />
 						<Route path="/sign-up" element={<SignUpPage />} />
 						<Route path="/book/:idBook" element={<BookPage />} />
+						<Route path="/cart" element={<CartPage />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>
