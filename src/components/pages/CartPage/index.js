@@ -4,43 +4,15 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../../contexts/UserContext';
 import CartItemComponent from '../../CartItem';
-import {
+import { getUserCart } from '../../../services/starbooks';
+import { 
   Container,
   Cart,
   FinalizationArea,
   TitleArea,
   MakeOrderButton
 } from './style';
-
-/*function CartItemComponent ({book, selectedItems, setSelectedItems}) {
-  
-  const [checked, setChecked] = useState(true)
-
-  function handleSetChecked () {
-    setChecked(!checked);
-    if(checked){
-      const listItems = selectedItems.filter((item) => item.book._id !== book.book._id);
-      setSelectedItems(listItems);
-    }else{
-      setSelectedItems([...selectedItems, book]);
-    }
-  }
-
-  return (
-    <CartItem>
-      <input checked={checked} type='checkbox' onClick={handleSetChecked} />
-      <img src={book.book.image} />
-      <LabelArea>
-        <DescriptionArea>
-          <h1>{book.book.title}</h1>
-          <p className='inventory' >Em estoque</p>
-          <button>Excluir item do carrinho</button>
-        </DescriptionArea>
-        <h2>R$ {book.book.price.toFixed(2).replace('.', ',')}</h2>
-      </LabelArea>
-    </CartItem>
-  )
-}*/
+import userEvent from '@testing-library/user-event';
 
 function calculateSubtotal(listItems){
   let aux = 0
@@ -53,21 +25,40 @@ function calculateSubtotal(listItems){
 const CartPage = () => {
   const navigate = useNavigate()
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [subtotal, setSubtotal] = useState(0);
   const [selectedItems, setSelectedItems] = useState([])
 
   useEffect(() => {
     if(!user.token) {
-      navigate('/sign-in')
+      alert('Faça login para visualizar seu carrinho!');
+      navigate('/sign-in');
+    }else{
+      setSelectedItems(user.cart);
     }
-    setSelectedItems(user.cart);
-    //setSubtotal(calculateSubtotal(user.cart))
+    getCartList();
+
   }, [])
   useEffect(() => {
     setSubtotal(calculateSubtotal(selectedItems))
   }, [selectedItems])
+
+  function getCartList () {
+    const promise = getUserCart(user.token)
+    promise.catch((error) => {
+      console.log(error);
+      alert(`Ocorreu um erro ao buscar dados do carrinho: ${error.message}`)
+    })
+    promise.then((res) => {
+      const aux = {...user}
+      setUser({
+        ...aux,
+        cart: res.data
+      })
+      setSelectedItems(res.data);
+    })
+  }
 
   return (
     <Container>
@@ -83,6 +74,7 @@ const CartPage = () => {
               setSelectedItems={setSelectedItems}
               selectedItems={selectedItems}
               setSubtotal={setSubtotal}
+              getCartList={getCartList}
             />
           )
           :

@@ -47,5 +47,8 @@ export const DescriptionArea = styled.div`
     text-align: left;
     background-color: #fff;
     color: #007185;
+    &:hover{
+      cursor: pointer;
+    }
   }
 `;

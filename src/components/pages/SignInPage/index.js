@@ -37,7 +37,6 @@ const SignUpPage = () => {
       }
     })
     promise.then((res) => {
-      console.log(res.data);
       const token = res.data
 
       setUser({
