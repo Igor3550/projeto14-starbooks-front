@@ -3,7 +3,7 @@ import colors from "../../Assets/styles/colors";
 
 export const Container = styled.div`
   background-color: ${colors.darkBlue};
-  width: 100vw;
+  width: 90vw;
   min-height: 50vh;
   max-width: 800px;
   margin: auto;

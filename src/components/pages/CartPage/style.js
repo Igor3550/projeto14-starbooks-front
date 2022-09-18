@@ -7,9 +7,13 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 80px 10% 50px 10%;
+  padding: 80px 0 50px 0;
   font-family: Arial,sans-serif;
   overflow-y: hidden;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 export const Cart = styled.div`
   width: 60%;
@@ -21,6 +25,12 @@ export const Cart = styled.div`
   align-items: center;
   padding: 20px;
   overflow-y: scroll;
+
+  @media (max-width: 900px) {
+    width: 95%;
+    height: 80%;
+    margin-bottom: 10px;
+  }
 `;
 export const TitleArea = styled.div`
   width: 100%;
@@ -33,10 +43,17 @@ export const TitleArea = styled.div`
     font-size: 36px;
     font-weight: 700;
   }
+  @media (max-width: 900px) {
+    height: auto;
+    h1, h2{
+      font-size: 22px;
+    }
+  }
 `;
 
 export const FinalizationArea = styled.div`
   width: 30%;
+  min-width: 350px;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -51,7 +68,7 @@ export const FinalizationArea = styled.div`
   h2{
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 10px;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
   }
   p{
@@ -60,6 +77,16 @@ export const FinalizationArea = styled.div`
   }
   .disable {
     background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 900px) {
+    width: 95%;
+    min-width: 100px;
+    margin-bottom: 5px;
+    max-height: 250px;
+    h2 {
+      font-size: 22px;
+    }
   }
 `;
 
