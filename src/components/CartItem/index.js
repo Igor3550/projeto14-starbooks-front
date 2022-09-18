@@ -42,7 +42,7 @@ function CartItemComponent ({book, selectedItems, setSelectedItems, getCartList}
   return (
     <CartItem>
       <input checked={checked} type='checkbox' onClick={handleSetChecked} />
-      <img src={book.book.image} />
+      <img src={book.book.image} onClick={handleSetChecked} />
       <LabelArea>
         <DescriptionArea>
           <h1>{book.book.title}</h1>

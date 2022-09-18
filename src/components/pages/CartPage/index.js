@@ -12,7 +12,6 @@ import {
   TitleArea,
   MakeOrderButton
 } from './style';
-import userEvent from '@testing-library/user-event';
 
 function calculateSubtotal(listItems){
   let aux = 0
@@ -32,12 +31,12 @@ const CartPage = () => {
 
   useEffect(() => {
     if(!user.token) {
-      alert('Faça login para visualizar seu carrinho!');
       navigate('/sign-in');
+      return alert('Faça login para visualizar seu carrinho!');
     }else{
       setSelectedItems(user.cart);
+      getCartList();
     }
-    getCartList();
 
   }, [])
   useEffect(() => {
@@ -67,7 +66,7 @@ const CartPage = () => {
         <TitleArea>
           <h1>Carrinho de compras</h1>
         </TitleArea>
-        {user.cart ?
+        {user.cart.length !== 0 ?
           user.cart.map((item) => 
             <CartItemComponent 
               book={item}
@@ -83,7 +82,7 @@ const CartPage = () => {
       </Cart>
       <FinalizationArea>
         <div>
-          <h2>Subtotal: R$ {subtotal.toFixed(2).replace('.', ',')}</h2>
+          <h2>Subtotal: R${subtotal.toFixed(2).replace('.', ',')}</h2>
           <p>({selectedItems.length}) Itens selecionados.</p>
         </div>
         <MakeOrderButton className={selectedItems.length === 0 ? 'disable' : ''} >Fechar pedido</MakeOrderButton>
