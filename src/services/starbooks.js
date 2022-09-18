@@ -32,4 +32,30 @@ function getBook(idBook) {
 	return promise;
 }
 
-export { signIn, signUp, getBooks, getBook };
+function getUserCart(token){
+	const config = createHeaders(token)
+	const promise = axios.get(`${BASE_URL}/cart`, config)
+	return promise;
+}
+
+function addItemToCart (token, idBook){
+	const config = createHeaders(token);
+	const promise = axios.post(`${BASE_URL}/cart/add/${idBook}`,{}, config);
+	return promise;
+}
+
+function deleteCartItem (token, idBook) {
+	const config = createHeaders(token);
+	const promise = axios.delete(`${BASE_URL}/cart/delete/${idBook}`, config)
+	return promise;
+}
+
+export { 
+	signIn, 
+	signUp, 
+	getBooks, 
+	getBook, 
+	getUserCart, 
+	addItemToCart, 
+	deleteCartItem 
+};

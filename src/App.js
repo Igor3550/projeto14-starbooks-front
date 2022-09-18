@@ -6,6 +6,7 @@ import GlobalStyle from "./components/Assets/styles/GlobalStyle";
 import SignUpPage from "./components/pages/SignUpPage";
 import SignInPage from "./components/pages/SignInPage";
 import Homepage from "./components/pages/Homepage/Homepage";
+import CartPage from "./components/pages/CartPage";
 import BookPage from "./components/pages/BookPage/BookPage";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 						<Route path="/sign-in" element={<SignInPage />} />
 						<Route path="/sign-up" element={<SignUpPage />} />
 						<Route path="/book/:idBook" element={<BookPage />} />
+						<Route path="/cart" element={<CartPage />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>

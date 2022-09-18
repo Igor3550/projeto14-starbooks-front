@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { getBook } from "../../../services/starbooks";
+import { getBook, addItemToCart } from "../../../services/starbooks";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import { BookStyle, Button } from "./Bookpage-style";
+import UserContext from "../../../contexts/UserContext";
 
 export default function BookPage() {
+	const { user } = useContext(UserContext)
 	const { idBook } = useParams();
 	const [bookData, setBookData] = useState({});
 
@@ -15,6 +17,24 @@ export default function BookPage() {
 			.catch((err) => console.log(err));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	function handleAddToCart (){
+		if(!user.token){
+			return alert('Faça login para adicionar itens ao seu carrinho!');
+		}
+		const promise = addItemToCart(user.token, idBook);
+		promise.catch((error) => {
+			console.log(error);
+			if(error.response.status === 409) {
+				alert('Item já existente no carrinho!')
+			}else {
+				alert(`Ocorreu um erro: ${error.message}`)
+			}
+		})
+		promise.then((res) => {
+			alert('Item adicionado ao carrinho com sucesso!')
+		})
+	}
 
 	return (
 		<>
@@ -27,7 +47,7 @@ export default function BookPage() {
 					<span>
 						R${Number(bookData.price).toFixed(2).toString().replace(/\./, ",")}
 					</span>
-					<Button>Adicionar ao carrinho</Button>
+					<Button onClick={handleAddToCart}>Adicionar ao carrinho</Button>
 					<Button>Adicionar aos Favoritos</Button>
 				</div>
 				<div>

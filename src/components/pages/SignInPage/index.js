@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signIn } from '../../../services/starbooks';
+import { signIn, getUserCart } from '../../../services/starbooks';
 import InputComponent from '../../InputComponent';
 import ButtonComponent from '../../ButtonComponent';
 import UserContext from '../../../contexts/UserContext';
@@ -15,7 +15,7 @@ import {
 const SignUpPage = () => {
   const navigate = useNavigate();
 
-  const { setUser } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -37,9 +37,22 @@ const SignUpPage = () => {
       }
     })
     promise.then((res) => {
-      console.log(res.data);
+      const token = res.data
+
       setUser({
-        token:res.data
+        token
+      })
+      
+      const promiseCart = getUserCart(res.data);
+      promiseCart.catch((error) => {
+        console.log(error);
+        alert(`Erro ao buscar dados do carrinho: ${error.message}`)
+      })
+      promiseCart.then((res) => {
+        setUser({
+          cart: res.data,
+          token
+        })
       })
       setEmail('');
       setPassword('');
