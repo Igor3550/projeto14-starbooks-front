@@ -5,6 +5,7 @@ export const PageStyle = styled.div`
 	width: 100%;
 	height: 100%;
 	color: #64646c;
+	font-family: Arial, sans-serif;
 
 	h3 {
 		margin: 15px 0 0 20px;

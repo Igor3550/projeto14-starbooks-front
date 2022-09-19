@@ -21,6 +21,8 @@ export default function SideBar() {
 			</IconContext.Provider>
 			{user.token ? (
 				<div>
+					<h2>Bem-vindo, {user.userData.name}!</h2>
+					<p>Boas Compras!</p>
 					<ButtonConfirm
 						onClick={() => {
 							setUser({});
@@ -32,13 +34,23 @@ export default function SideBar() {
 				</div>
 			) : (
 				<div>
+					<h2>Bem-vindo, anônimo! </h2>
+					<p>Boas compras!</p>
 					<ButtonConfirm
 						onClick={() => {
 							navigate("/sign-in");
 							setDisable(false);
 						}}
 					>
-						Login/Register
+						Login
+					</ButtonConfirm>
+					<ButtonConfirm
+						onClick={() => {
+							navigate("/sign-up");
+							setDisable(false);
+						}}
+					>
+						Registrar
 					</ButtonConfirm>
 				</div>
 			)}
