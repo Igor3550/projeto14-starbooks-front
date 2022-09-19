@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const SideBarComponent = styled.div`
-	position: absolute;
+	position: fixed;
 	color: white;
 	top: 0;
+	bottom: 0;
 	right: 0;
-	height: 100vh;
+	height: 100%;
 	width: 60vw;
 	backdrop-filter: blur(5px) saturate(180%);
 	-webkit-backdrop-filter: blur(5px) saturate(180%);
@@ -19,7 +20,7 @@ export const SideBarComponent = styled.div`
 		align-items: center;
 		padding-top: 25vh;
 		justify-content: space-between;
-		height: 100vh;
+		height: 100%;
 	}
 
 	span {
