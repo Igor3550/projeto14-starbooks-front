@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const BASE_URL = "http://localhost:5000";
-const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
+//const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
 
 function createHeaders(token) {
 	const config = {
@@ -50,6 +50,12 @@ function deleteCartItem(token, idBook) {
 	return promise;
 }
 
+function addPurchase(token, body) {
+	const config = createHeaders(token);
+	const promise = axios.post(`${BASE_URL}/purchases`, body, config);
+	return promise;
+}
+
 export {
 	signIn,
 	signUp,
@@ -58,4 +64,5 @@ export {
 	getUserCart,
 	addItemToCart,
 	deleteCartItem,
+	addPurchase,
 };

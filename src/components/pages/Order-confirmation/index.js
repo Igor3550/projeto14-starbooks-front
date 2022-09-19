@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { ButtonConfirm, AlignDiv, Form, Order } from "./style";
+import { addPurchase, deleteCartItem } from "../../../services/starbooks";
+import { useNavigate } from "react-router-dom";
 
 export default function SendOrder({
 	selectedItems,
@@ -11,11 +13,24 @@ export default function SendOrder({
 	subtotal,
 }) {
 	const { user } = useContext(UserContext);
-	const [final, setFinal] = useState({});
+	const [purchase, setPurchase] = useState({});
 	const [order, setOrder] = useState({});
+	const navigate = useNavigate();
 
 	function OrderData() {
-		console.log(final);
+		addPurchase(user.token, purchase)
+			.then(alert("Compra realizada com suscesso!"))
+			.catch((err) => console.error(err.message));
+
+		for (let i in selectedItems) {
+			deleteCartItem(user.token, selectedItems[i].book._id)
+				.catch((err) => {
+					console.log(err);
+				})
+				.then((res) => {
+					navigate("/");
+				});
+		}
 	}
 
 	function AddData(event) {
@@ -23,14 +38,12 @@ export default function SendOrder({
 		const arr = [];
 
 		for (let i in selectedItems) {
-			arr.push(selectedItems[i].book);
+			arr.push(selectedItems[i].book._id);
 		}
 
-		setFinal({
+		setPurchase({
 			...order,
-			token: user.token,
-			books: arr,
-			userId: selectedItems[0].userId,
+			booksIds: arr,
 		});
 	}
 
@@ -40,11 +53,11 @@ export default function SendOrder({
 				<AiFillCloseCircle
 					onClick={() => {
 						setDisplayViewOption(false);
-						setFinal([]);
+						setPurchase([]);
 					}}
 				/>
 			</IconContext.Provider>
-			{final.adress ? (
+			{purchase.adress ? (
 				<>
 					<AlignDiv>
 						<div>
@@ -56,7 +69,7 @@ export default function SendOrder({
 							<p>{order.adress}</p>
 							<span>CEP:</span>
 							<p>{order.cep}</p>
-							<span>Total: {subtotal}</span>
+							<span>Total: R${subtotal.toFixed(2).replace(".", ",")}</span>
 						</div>
 						<ButtonConfirm onClick={OrderData}>Confirmar Pedido</ButtonConfirm>
 					</AlignDiv>
