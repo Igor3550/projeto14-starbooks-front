@@ -27,7 +27,7 @@ export default function SendOrder({
 				.catch((err) => {
 					console.log(err);
 				})
-				.then((res) => {
+				.then(() => {
 					navigate("/");
 				});
 		}

@@ -67,7 +67,9 @@ const CartPage = () => {
 				<TitleArea>
 					<h1>Carrinho de compras</h1>
 				</TitleArea>
-				{user.cart ? (
+				{!user.cart ? (
+					<h2>Nenhum item no carrinho!</h2>
+				) : (
 					user.cart.map((item) => (
 						<CartItemComponent
 							book={item}
@@ -77,8 +79,6 @@ const CartPage = () => {
 							getCartList={getCartList}
 						/>
 					))
-				) : (
-					<h2>Nenhum item no carrinho!</h2>
 				)}
 			</Cart>
 			<FinalizationArea>

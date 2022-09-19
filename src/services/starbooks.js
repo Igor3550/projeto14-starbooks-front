@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
-//const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
+//const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
 
 function createHeaders(token) {
 	const config = {
@@ -56,6 +56,18 @@ function addPurchase(token, body) {
 	return promise;
 }
 
+function addFavorite(token, idBook) {
+	const config = createHeaders(token);
+	const promise = axios.post(`${BASE_URL}/favorites/${idBook}`, {}, config);
+	return promise;
+}
+
+function getFavorites(token) {
+	const config = createHeaders(token);
+	const promise = axios.get(`${BASE_URL}/favorites`, config);
+	return promise;
+}
+
 export {
 	signIn,
 	signUp,
@@ -65,4 +77,6 @@ export {
 	addItemToCart,
 	deleteCartItem,
 	addPurchase,
+	getFavorites,
+	addFavorite,
 };
