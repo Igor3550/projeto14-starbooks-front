@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
-//const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
+//const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://projeto14-starbooks-back.herokuapp.com";
 
 function createHeaders(token) {
 	const config = {
@@ -32,30 +32,30 @@ function getBook(idBook) {
 	return promise;
 }
 
-function getUserCart(token){
-	const config = createHeaders(token)
-	const promise = axios.get(`${BASE_URL}/cart`, config)
-	return promise;
-}
-
-function addItemToCart (token, idBook){
+function getUserCart(token) {
 	const config = createHeaders(token);
-	const promise = axios.post(`${BASE_URL}/cart/add/${idBook}`,{}, config);
+	const promise = axios.get(`${BASE_URL}/cart`, config);
 	return promise;
 }
 
-function deleteCartItem (token, idBook) {
+function addItemToCart(token, idBook) {
 	const config = createHeaders(token);
-	const promise = axios.delete(`${BASE_URL}/cart/delete/${idBook}`, config)
+	const promise = axios.post(`${BASE_URL}/cart/add/${idBook}`, {}, config);
 	return promise;
 }
 
-export { 
-	signIn, 
-	signUp, 
-	getBooks, 
-	getBook, 
-	getUserCart, 
-	addItemToCart, 
-	deleteCartItem 
+function deleteCartItem(token, idBook) {
+	const config = createHeaders(token);
+	const promise = axios.delete(`${BASE_URL}/cart/delete/${idBook}`, config);
+	return promise;
+}
+
+export {
+	signIn,
+	signUp,
+	getBooks,
+	getBook,
+	getUserCart,
+	addItemToCart,
+	deleteCartItem,
 };
