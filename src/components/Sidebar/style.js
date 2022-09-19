@@ -13,13 +13,14 @@ export const SideBarComponent = styled.div`
 	background-color: rgba(45, 61, 93, 0.75);
 	border: 1px solid rgba(255, 255, 255, 0.125);
 	font-size: 20px;
+	text-align: center;
+	font-family: Arial, sans-serif;
 
 	div {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-top: 25vh;
-		justify-content: space-between;
+		justify-content: center;
 		height: 100%;
 	}
 
