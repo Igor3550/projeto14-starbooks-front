@@ -26,6 +26,7 @@ export default function SideBar() {
 					<ButtonConfirm
 						onClick={() => {
 							setUser({});
+							navigate("/");
 							setDisable(false);
 						}}
 					>

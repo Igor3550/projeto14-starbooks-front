@@ -88,7 +88,9 @@ const CartPage = () => {
 				</div>
 				<MakeOrderButton
 					className={selectedItems.length === 0 ? "disable" : ""}
-					onClick={() => setDisplayViewOption(true)}
+					onClick={() =>
+						selectedItems.length === 0 ? "" : setDisplayViewOption(true)
+					}
 				>
 					Fechar pedido
 				</MakeOrderButton>
